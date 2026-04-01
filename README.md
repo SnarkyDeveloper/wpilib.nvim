@@ -16,8 +16,14 @@ An **UNOFFICIAL** Neovim plugin for FRC
 
 ### Lazy users
 
-```
-{
+```lua
+return {
     'SnarkyDeveloper/wpilib.nvim',
+    dependencies = {
+        'MunifTanjim/nui.nvim',
+    },
+    config = function()
+        require('wpilib').setup({})
+    end,
 }
 ```
