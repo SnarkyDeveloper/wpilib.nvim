@@ -2,7 +2,7 @@
 	wpilib.nvim
 		Unofficial Neovim plugin for FRC
 	
-	(c) 2023 frc4533-lincoln
+	(c) 2023 frc4533-lincoln & 2026 SnarkyDev
 ]]
 
 local M = {}
