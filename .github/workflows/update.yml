@@ -1,0 +1,36 @@
+name: Update WPILib Versions
+
+on:
+  schedule:
+    - cron: '0 0 1 * *' 
+  workflow_dispatch: 
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.10'
+
+      - name: Install PyGithub
+        run: pip install PyGithub
+
+      - name: Run Script
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: python versions.py
+
+      - name: Commit and Push
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@://github.com"
+          git add lua/wpilib/versions.lua
+          git commit -m "update versions [skip ci]" || exit 0
+          git push
+
