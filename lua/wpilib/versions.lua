@@ -1,4 +1,5 @@
 return {
+  { tag = '2027.0.0-alpha-6', stable = false },
   { tag = '2026.2.1', stable = true },
   { tag = '2026.1.1', stable = true },
   { tag = '2026.1.1-beta-1', stable = false },
