@@ -6,7 +6,7 @@ function Command.build(args)
 		return
 	end
 	local notifier = require('wpilib.notifier').create_notifier("Starting Robot Build Code")
-	require('wpilib.commands.commands').run_gradlew("build" .. args,
+	require('wpilib.commands.commands').run_gradlew("build", args,
 		function(_, data)
 			if not data or data == "" then return end
 
