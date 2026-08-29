@@ -73,7 +73,7 @@ function T.is_valid_project()
 		return false
 	end
 
-	if vim.uv.fs_stat(path .. file) then
+	if vim.uv.fs_stat(file) then
 		return true
 	end
 end
