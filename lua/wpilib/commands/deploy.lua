@@ -7,7 +7,7 @@ function Command.deploy(args)
 	end
 
 	local notifier = require('wpilib.notifier').create_notifier("Deploy Robot Code")
-	require('wpilib.commands.commands').run_gradlew("deploy" .. args,
+	require('wpilib.commands.commands').run_gradlew("deploy", args,
 		function(_, data)
 			if not data or data == "" then return end
 

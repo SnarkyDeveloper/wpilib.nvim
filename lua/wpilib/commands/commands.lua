@@ -79,14 +79,27 @@ function T.is_valid_project()
 end
 
 
-function T.run_gradlew(cmd, cb, exit_cb, sync)
+function T.run_gradlew(cmd, args, cb, exit_cb, sync)
+	if type(args) == "function" then
+		sync = exit_cb
+		exit_cb = cb
+		cb = args
+		args = {}
+	end
+
+	args = args or {}
 	sync = sync or false
 	if T.is_valid_project() then
         if type(cb) ~= "function" or type(exit_cb) ~= "function" then
             return
         end
 
-        local res = vim.system({ './gradlew', cmd }, {
+		local gradlew_args = { './gradlew', cmd }
+		if type(args) == "table" and #args > 0 then
+			vim.list_extend(gradlew_args, args)
+		end
+
+        local res = vim.system(gradlew_args, {
             stdout = function(err, data)
                 if data then
                     vim.schedule(function()
